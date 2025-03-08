@@ -10,13 +10,22 @@ class Community(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    val id: Long,
+    val id: Long = 0,
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
     @JoinColumn(name = "stage_id", nullable = false)
     val stage: Stage,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "category", nullable = false)
     val category: GameCategory
-)
+) {
+    companion object {
+
+        fun of(stage: Stage, category: GameCategory) = Community(
+            stage = stage,
+            category = category
+        )
+
+    }
+}
