@@ -16,6 +16,9 @@ data class TempPointDto(
     val expiredDate: LocalDateTime
 )
 
+data class MyPointDto(
+    val point: Long
+)
 data class IsParticipantDto(
     val isParticipant: Boolean
 )
